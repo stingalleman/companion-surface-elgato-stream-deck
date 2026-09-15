@@ -67,12 +67,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@companion-surface/base@npm:~1.2.1":
-  version: 1.2.1
-  resolution: "@companion-surface/base@npm:1.2.1"
+"@companion-surface/base@npm:~1.4.0":
+  version: 1.4.0
+  resolution: "@companion-surface/base@npm:1.4.0"
   dependencies:
-    tslib: "npm:^2.8.1"
-  checksum: 10c0/1ca9a9c72fd4a714455812a7a337777b7c7967ca13eeb0b71f5a95e4e1df70361b73c278c52b16da808ded5b8889d17660ace7b27fd87a61e2a14d5e0a1305d9
+    zod: "npm:^4.4.3"
+  checksum: 10c0/8b50af17ee832a8f5e13cfde5958e846be36fd5a3709174faec80e01aab27c84e2302160ce94ac727a6dd23e0dda8249604858e066a06f7ceb10ced8272614d0
   languageName: node
   linkType: hard
 
@@ -856,7 +856,7 @@ __metadata:
   resolution: "companion-surface-elgato-stream-deck@workspace:."
   dependencies:
     "@companion-module/tools": "npm:^3.1.0"
-    "@companion-surface/base": "npm:~1.2.1"
+    "@companion-surface/base": "npm:~1.4.0"
     "@elgato-stream-deck/node": "npm:^7.6.3"
     "@elgato-stream-deck/tcp": "npm:^7.6.3"
     "@julusian/jpeg-turbo": "npm:^3.0.1"
@@ -2497,6 +2497,13 @@ __metadata:
   version: 1.2.1
   resolution: "yocto-queue@npm:1.2.1"
   checksum: 10c0/5762caa3d0b421f4bdb7a1926b2ae2189fc6e4a14469258f183600028eb16db3e9e0306f46e8ebf5a52ff4b81a881f22637afefbef5399d6ad440824e9b27f9f
+  languageName: node
+  linkType: hard
+
+"zod@npm:^4.4.3":
+  version: 4.6.2
+  resolution: "zod@npm:4.6.2"
+  checksum: 10c0/0d0dc2dc37c62e8777bb2d691e7fb8a0c80cc57e343df69fa62a57f26e0ac20107b14afda34f3bed98b27e5378eee2bbc7c5d23c203c3602690148a014dec7cd
   languageName: node
   linkType: hard
 
