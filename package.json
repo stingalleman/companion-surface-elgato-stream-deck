@@ -20,7 +20,7 @@
 		"url": "git+https://github.com/bitfocus/companion-surface-elgato-stream-deck.git"
 	},
 	"engines": {
-		"node": "^22.18",
+		"node": "^26.8",
 		"yarn": "^4"
 	},
 	"dependencies": {
@@ -33,7 +33,7 @@
 	},
 	"devDependencies": {
 		"@companion-module/tools": "^3.1.0",
-		"@types/node": "^22.20.2",
+		"@types/node": "^26.5.1",
 		"@types/semver": "^7.8.0",
 		"eslint": "^10.10.0",
 		"husky": "^9.1.7",
