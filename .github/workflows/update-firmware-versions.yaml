@@ -1,0 +1,57 @@
+name: Check for firmware version updates
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  # Run every week
+  schedule:
+    - cron: '17 6 * * 0'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-firmware-versions:
+    if: ${{ github.repository_owner == 'bitfocus' }}
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          token: ${{ secrets.MODULE_BOT_PAT || secrets.GITHUB_TOKEN }}
+
+      - name: Use Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22.x
+
+      - name: Prepare Environment
+        run: |
+          corepack enable
+          yarn install --immutable
+        env:
+          CI: true
+
+      - name: Run script
+        run: |
+          yarn update:firmware-versions
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          commit-message: 'chore: update cached firmware versions'
+          title: 'chore: update cached firmware versions'
+          body: |
+            This updates the cached firmware versions in `src/firmware-versions.json` to match https://api.bitfocus.io/v1/product/elgato-updater/versions
+
+            If any device is listed as `Unknown device (please fill this in)`, replace that with a human readable name before merging.
+          delete-branch: true
+          branch: 'chore/update-firmware-versions'
+          committer: 'Companion Bot <companion-module-bot@users.noreply.github.com>'
+          author: 'Companion Bot <companion-module-bot@users.noreply.github.com>'
+          add-paths: |
+            src/firmware-versions.json
+          token: ${{ secrets.MODULE_BOT_PAT || secrets.GITHUB_TOKEN }}

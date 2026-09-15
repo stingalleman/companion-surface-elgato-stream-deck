@@ -10,6 +10,7 @@
 		"build": "rimraf dist && run build:main && run build:manifest-usb-ids",
 		"build:main": "tsc -p tsconfig.build.json",
 		"build:manifest-usb-ids": "node ./tools/update-usb-ids.mjs",
+		"update:firmware-versions": "node ./tools/update-firmware-versions.mjs",
 		"dev": "tsc -p tsconfig.build.json --watch",
 		"lint:raw": "eslint",
 		"lint": "run lint:raw ."

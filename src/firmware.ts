@@ -1,35 +1,22 @@
 import { createModuleLogger, SurfaceFirmwareUpdateCache, type SurfaceFirmwareUpdateInfo } from '@companion-surface/base'
 import { DeviceModelId, StreamDeck } from '@elgato-stream-deck/node'
 import { SemVer } from 'semver'
+import latestFirmwareVersionsJson from './firmware-versions.json' with { type: 'json' }
 
 const logger = createModuleLogger('FirmwareUpdateCheck')
 
 interface FirmwareVersionInfo {
+	/** Human readable name of the device, for reference only. Not provided by the api */
+	name?: string
 	productIds: number[]
 	versions: Record<string, string>
 }
 
 /**
- * The latest firmware versions for the SDS at the time this was last updated
+ * The latest known firmware versions, used as a fallback for when the api is unreachable.
+ * This is kept up to date by `yarn update:firmware-versions`, run weekly by a github action
  */
-const LATEST_FIRMWARE_VERSIONS: FirmwareVersionInfo[] = [
-	{
-		// Studio
-		productIds: [0x00aa],
-		versions: {
-			AP2: '2.01.002',
-			ENCODER_AP2: '1.01.012',
-			ENCODER_LD: '1.01.006',
-		},
-	},
-	{
-		// Network dock
-		productIds: [0xffff],
-		versions: {
-			AP2: '1.01.016',
-		},
-	},
-]
+const LATEST_FIRMWARE_VERSIONS = latestFirmwareVersionsJson as FirmwareVersionInfo[]
 
 const STREAMDECK_MODULES_SUPPORTING_UPDATES: ReadonlySet<DeviceModelId> = new Set([
 	DeviceModelId.STUDIO,
